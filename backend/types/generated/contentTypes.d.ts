@@ -483,7 +483,9 @@ export interface ApiCustomerCustomer extends Struct.CollectionTypeSchema {
         'Thakurgaon',
       ]
     >;
-    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    email: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     full_name: Schema.Attribute.String & Schema.Attribute.Required;
     is_active: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
@@ -496,6 +498,9 @@ export interface ApiCustomerCustomer extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     phone: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.Enumeration<['customer', 'admin']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'customer'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -526,7 +531,6 @@ export interface ApiOrderItemOrderItem extends Struct.CollectionTypeSchema {
       'api::order-item.order-item'
     > &
       Schema.Attribute.Private;
-    order: Schema.Attribute.Relation<'manyToOne', 'api::order.order'>;
     product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
     publishedAt: Schema.Attribute.DateTime;
     quantity: Schema.Attribute.Integer &
@@ -554,6 +558,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    customer: Schema.Attribute.Relation<'oneToOne', 'api::customer.customer'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'> &
       Schema.Attribute.Private;

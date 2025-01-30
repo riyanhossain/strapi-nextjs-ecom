@@ -20,12 +20,6 @@
     "sub_total": {
       "type": "integer"
     },
-    "order": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::order.order",
-      "inversedBy": "order_items"
-    },
     "product": {
       "type": "relation",
       "relation": "oneToOne",

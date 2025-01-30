@@ -30,8 +30,12 @@
     "order_items": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::order-item.order-item",
-      "mappedBy": "order"
+      "target": "api::order-item.order-item"
+    },
+    "customer": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::customer.customer"
     }
   }
 }

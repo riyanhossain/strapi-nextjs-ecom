@@ -14,8 +14,7 @@
   "attributes": {
     "phone": {
       "type": "string",
-      "required": true,
-      "regex": "/^01[3-9]\\d{8}$/"
+      "required": true
     },
     "full_name": {
       "type": "string",
@@ -27,7 +26,8 @@
     },
     "email": {
       "type": "email",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "verified": {
       "type": "boolean",
@@ -107,6 +107,15 @@
         "Tangail",
         "Thakurgaon"
       ]
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "customer",
+        "admin"
+      ],
+      "required": true,
+      "default": "customer"
     }
   }
 }
