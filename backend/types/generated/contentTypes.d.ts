@@ -628,9 +628,6 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     discount: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     images: Schema.Attribute.Media<'images' | 'videos', true> &
       Schema.Attribute.Required;
-    is_active: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

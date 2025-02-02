@@ -4,14 +4,17 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default async function Aside() {
-  const data = await getCategories();
+  const res = await getCategories();
+  if (!res.success) {
+    return <div>Error loading categories</div>;
+  }
 
   const categories = [
     {
       name: "All",
       link: "/",
     },
-    ...data.map((category) => ({
+    ...res.data.data.map((category) => ({
       name: category.name,
       link: category.name.toLowerCase().replace(" ", "-"),
     })),

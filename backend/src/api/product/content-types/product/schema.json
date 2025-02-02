@@ -31,11 +31,6 @@
     "stock_quantity": {
       "type": "integer"
     },
-    "is_active": {
-      "type": "boolean",
-      "default": true,
-      "required": true
-    },
     "images": {
       "type": "media",
       "multiple": true,
