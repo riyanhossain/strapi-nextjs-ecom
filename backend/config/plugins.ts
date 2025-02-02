@@ -1,3 +1,3 @@
 export default () => ({
-  "users-permissions": false,
+  // "users-permissions": false,
 });
