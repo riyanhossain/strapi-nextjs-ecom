@@ -1,5 +1,5 @@
 import React from "react";
-import { getPolicyPage } from "./actions";
+import { getPolicyPage } from "@/lib/queries";
 import MarkdownRenderer from "@/components/markdown-renderer";
 
 export default async function PrivacyAndPolicy() {

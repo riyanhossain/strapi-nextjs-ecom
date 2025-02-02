@@ -1,5 +1,5 @@
 import React from "react";
-import { getTermsAndCondtionsPage } from "./actions";
+import { getTermsAndCondtionsPage } from "@/lib/queries";
 import MarkdownRenderer from "@/components/markdown-renderer";
 
 export default async function TermsAndCondtions() {
