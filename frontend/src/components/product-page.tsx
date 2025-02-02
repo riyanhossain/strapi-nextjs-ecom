@@ -2,12 +2,12 @@
 
 import { PaginationComp } from "@/components/pagination-component";
 import ProductCard from "@/components/product-card";
-import { getALlProducts } from "@/lib/queries";
+import { getProducts } from "@/lib/queries";
 import { Product, Pagination } from "@/types";
 import React from "react";
 import ProductPageSkeleton from "@/components/product-page-skeleton";
 
-export function ProductsPage() {
+export function ProductsPage({ category }: { category?: string }) {
   const [currentPage, setCurrentPage] = React.useState(1);
   const [data, setData] = React.useState<{
     data: Product[];
@@ -18,8 +18,9 @@ export function ProductsPage() {
   // Queries
   React.useEffect(() => {
     const fetchProducts = async () => {
-      const res = await getALlProducts({
+      const res = await getProducts({
         page: currentPage,
+        category,
       });
       if (res.success) {
         setData(res.data);
@@ -27,7 +28,7 @@ export function ProductsPage() {
     };
 
     fetchProducts();
-  }, [currentPage]);
+  }, [currentPage, category]);
 
   if (!data) {
     return <ProductPageSkeleton />;

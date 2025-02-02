@@ -48,10 +48,20 @@ export const getCategories = async () => {
   return CategoriesSchema.safeParse(res);
 };
 
-export const getALlProducts = async ({ page = 1 }: { page?: number }) => {
+export const getProducts = async ({
+  page = 1,
+  category = "",
+}: {
+  page?: number;
+  category?: string;
+}) => {
+  const filterQuery = category
+    ? `&filters[category][name][$eqi]=${category.toLowerCase()}`
+    : "";
+
   const res = await api
     .get(
-      `products?populate=*&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`,
+      `products?populate=*&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}${filterQuery}`,
       {
         cache: "force-cache",
       }
