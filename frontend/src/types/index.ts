@@ -1,5 +1,19 @@
 import z from "zod";
 
+export const CustomerSchema = z.object({
+  id: z.number(),
+  documentId: z.string(),
+  full_name: z.string(),
+  email: z.string().email(),
+  phone: z.string(),
+  address: z.string(),
+  verified: z.boolean().default(false),
+  is_active: z.boolean().default(false),
+  role: z.enum(["customer", "admin"]).default("customer"),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
+});
+
 export const ImageSchema = z.object({
   id: z.number(),
   documentId: z.string(),
@@ -70,8 +84,34 @@ export const ProductsSchema = z.object({
   }),
 });
 
+export const OrderItemSchema = z.object({
+  id: z.number().optional(),
+  documentId: z.string().optional(),
+  product: ProductSchema,
+  quantity: z.number().default(0),
+  sub_total: z.number().default(0),
+  createdAt: z.string().datetime().optional(),
+  updatedAt: z.string().datetime().optional(),
+});
+
+export const OrderSchema = z.object({
+  id: z.number().optional(),
+  documentId: z.string().optional(),
+  customer: CustomerSchema,
+  order_items: z.array(OrderItemSchema),
+  order_status: z
+    .enum(["pending", "shipped", "delivered", "cancelled"])
+    .default("pending"),
+  total: z.number(),
+  createdAt: z.string().datetime().optional(),
+  updatedAt: z.string().datetime().optional(),
+});
+
 // export type
 export type Image = z.infer<typeof ImageSchema>;
 export type Category = z.infer<typeof CategorySchema>;
 export type Product = z.infer<typeof ProductSchema>;
 export type Pagination = z.infer<typeof PaginationSchema>;
+export type OrderItem = z.infer<typeof OrderItemSchema>;
+export type Order = z.infer<typeof OrderSchema>;
+export type Customer = z.infer<typeof CustomerSchema>;

@@ -489,7 +489,7 @@ export interface ApiCustomerCustomer extends Struct.CollectionTypeSchema {
     full_name: Schema.Attribute.String & Schema.Attribute.Required;
     is_active: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<true>;
+      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

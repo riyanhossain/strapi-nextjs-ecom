@@ -1,7 +1,8 @@
 import React from "react";
-import { ShoppingCart, MenuIcon } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import CartSheet from "@/components/cart-sheet";
 
 export default function Header() {
   return (
@@ -13,9 +14,7 @@ export default function Header() {
         <nav>
           <ul className="flex gap-x-2">
             <li>
-              <Button variant="ghost" className="rounded">
-                <ShoppingCart size={24} />
-              </Button>
+              <CartSheet />
             </li>
             <li>
               <Button variant="ghost" className="rounded">

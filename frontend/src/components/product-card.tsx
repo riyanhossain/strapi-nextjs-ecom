@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { type Product } from "@/types";
 import { StrapiImage } from "@/components/strapi-image";
+import { useCartStore } from "@/store/cart";
 
 type CardProps = React.ComponentProps<typeof Card>;
 
@@ -19,6 +20,7 @@ export default function ProductCard({
   product,
   ...props
 }: CardProps & { product: Product }) {
+  const { addToCart } = useCartStore();
   return (
     <Card className={cn("w-full overflow-hidden h-full", className)} {...props}>
       <CardContent className="p-0">
@@ -35,7 +37,7 @@ export default function ProductCard({
         <CardTitle>৳ {product.price}</CardTitle>
       </CardHeader>
       <CardFooter className="!px-2">
-        <Button className="w-full">
+        <Button onClick={() => addToCart(product)} className="w-full">
           <ShoppingBag /> Buy Now
         </Button>
       </CardFooter>

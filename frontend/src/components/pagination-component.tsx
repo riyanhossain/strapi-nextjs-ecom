@@ -29,6 +29,10 @@ export function PaginationComp({
     }
   };
 
+  if (total <= 1) {
+    return null;
+  }
+
   return (
     <Pagination>
       <PaginationContent>
