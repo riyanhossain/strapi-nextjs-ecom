@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { type Product } from "@/types";
-import { StrapiImage } from "@/components/strapi-image";
+import StrapiImage from "@/components/strapi-image";
 import { useCartStore } from "@/store/cart";
 
 type CardProps = React.ComponentProps<typeof Card>;

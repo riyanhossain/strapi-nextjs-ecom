@@ -13,12 +13,21 @@ import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { useCartStore } from "@/store/cart";
 import CartProductCard from "@/components/cart-product-card";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function CartSheet() {
   const { cart, getTotalPrice } = useCartStore();
+
+  const pathname = usePathname();
+
+  const disabledSheet = pathname.startsWith("/cart");
+
+  const [open, setOpen] = React.useState(false);
+
   return (
-    <Sheet>
-      <SheetTrigger asChild>
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild disabled={disabledSheet}>
         <Button variant="ghost" className="rounded">
           <span className="text-sm text-primary">৳ {getTotalPrice()}</span>
           <ShoppingCart size={24} />
@@ -53,11 +62,15 @@ export default function CartSheet() {
 
         <div className="h-6"></div>
 
-        <Button className="w-full">View Cart</Button>
+        <Link href="/cart" onClick={() => setOpen(false)}>
+          <Button className="w-full">View Cart</Button>
+        </Link>
 
         <div className="h-2"></div>
 
-        <Button className="w-full">Checkout</Button>
+        <Link href="/checkout" onClick={() => setOpen(false)}>
+          <Button className="w-full">Checkout</Button>
+        </Link>
       </SheetContent>
     </Sheet>
   );

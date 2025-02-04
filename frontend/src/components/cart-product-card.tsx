@@ -3,7 +3,7 @@
 import { OrderItem } from "@/types";
 import React from "react";
 import { Card, CardContent } from "./ui/card";
-import { StrapiImage } from "./strapi-image";
+import StrapiImage from "./strapi-image";
 import { Button } from "./ui/button";
 import { X } from "lucide-react";
 import { useCartStore } from "@/store/cart";

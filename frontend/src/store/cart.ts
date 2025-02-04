@@ -66,12 +66,14 @@ export const useCartStore = create<CartState>()(
 
       increaseQuantity: (id) => {
         set((state) => {
-          const existingItem = state.cart.find((i) => i.documentId === id);
+          const existingItem = state.cart.find(
+            (i) => i.product.documentId === id
+          );
 
           if (existingItem) {
             return {
               cart: state.cart.map((i) =>
-                i.documentId === id
+                i.product.documentId === id
                   ? {
                       ...i,
                       quantity: i.quantity + 1,
@@ -88,18 +90,20 @@ export const useCartStore = create<CartState>()(
 
       decreaseQuantity: (id) => {
         set((state) => {
-          const existingItem = state.cart.find((i) => i.documentId === id);
+          const existingItem = state.cart.find(
+            (i) => i.product.documentId === id
+          );
 
           if (existingItem) {
             if (existingItem.quantity === 1) {
               return {
-                cart: state.cart.filter((i) => i.documentId !== id),
+                cart: state.cart.filter((i) => i.product.documentId !== id),
               };
             }
 
             return {
               cart: state.cart.map((i) =>
-                i.documentId === id
+                i.product.documentId === id
                   ? {
                       ...i,
                       quantity: i.quantity - 1,

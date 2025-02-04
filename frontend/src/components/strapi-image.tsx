@@ -9,7 +9,7 @@ interface StrapiImageProps {
   className?: string;
 }
 
-export function StrapiImage({
+export default function StrapiImage({
   src,
   alt,
   height,
