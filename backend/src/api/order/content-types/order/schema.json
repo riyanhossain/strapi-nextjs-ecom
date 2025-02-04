@@ -36,6 +36,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::customer.customer"
+    },
+    "notes": {
+      "type": "text"
     }
   }
 }

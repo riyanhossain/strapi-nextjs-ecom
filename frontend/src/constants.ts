@@ -64,4 +64,4 @@ export const DISTRICT = [
   "Sylhet",
   "Tangail",
   "Thakurgaon",
-];
+] as string[];

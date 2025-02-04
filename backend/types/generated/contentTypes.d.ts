@@ -487,9 +487,6 @@ export interface ApiCustomerCustomer extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
     full_name: Schema.Attribute.String & Schema.Attribute.Required;
-    is_active: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -562,6 +559,7 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'> &
       Schema.Attribute.Private;
+    notes: Schema.Attribute.Text;
     order_items: Schema.Attribute.Relation<
       'oneToMany',
       'api::order-item.order-item'

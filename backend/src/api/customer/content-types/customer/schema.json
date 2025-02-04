@@ -34,11 +34,6 @@
       "default": false,
       "required": true
     },
-    "is_active": {
-      "type": "boolean",
-      "default": false,
-      "required": true
-    },
     "district": {
       "type": "enumeration",
       "enum": [
