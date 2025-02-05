@@ -73,8 +73,8 @@ export const ProductSchema = z.object({
   images: z.array(ImageSchema),
   sizes: z.array(SizeSchema).optional(),
   colors: z.array(ColorSchema).optional(),
-  createdAt: z.string().datetime(),
-  updatedAt: z.string().datetime(),
+  createdAt: z.string().datetime().optional(),
+  updatedAt: z.string().datetime().optional(),
 });
 
 // // api response schema

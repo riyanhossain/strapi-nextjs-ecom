@@ -1,6 +1,11 @@
 import ky from "ky";
 import { env } from "@/env";
-import { CategoriesSchema, ProductsSchema } from "@/types";
+import {
+  CategoriesSchema,
+  ProductsSchema,
+  ProductSchema,
+  type Product,
+} from "@/types";
 import { PAGE_SIZE } from "@/constants";
 
 export const api = ky.create({
@@ -58,4 +63,14 @@ export const getProducts = async ({
     .json();
 
   return ProductsSchema.safeParse(res);
+};
+
+export const getSingleProduct = async (slug: string) => {
+  const { data } = await api
+    .get<{
+      data: Product;
+    }>(`products/${slug}?populate=*`)
+    .json();
+
+  return ProductSchema.safeParse(data);
 };

@@ -1,5 +1,5 @@
 import { ShoppingBag } from "lucide-react";
-
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,25 +22,36 @@ export default function ProductCard({
 }: CardProps & { product: Product }) {
   const { addToCart } = useCartStore();
   return (
-    <Card className={cn("w-full overflow-hidden h-full", className)} {...props}>
-      <CardContent className="p-0">
-        <StrapiImage
-          src={product.images[0].url}
-          alt={product.name}
-          height={600}
-          width={600}
-          className="object-cover w-full h-64"
-        />
-      </CardContent>
-      <CardHeader className="space-y-4 text-center">
-        <CardTitle className="line-clamp-1">{product.name}</CardTitle>
-        <CardTitle>৳ {product.price}</CardTitle>
-      </CardHeader>
-      <CardFooter className="!px-2">
-        <Button onClick={() => addToCart(product)} className="w-full">
-          <ShoppingBag /> Buy Now
-        </Button>
-      </CardFooter>
-    </Card>
+    <Link href={`/products/${product.documentId}`}>
+      <Card
+        className={cn("w-full overflow-hidden h-full", className)}
+        {...props}
+      >
+        <CardContent className="p-0">
+          <StrapiImage
+            src={product.images[0].url}
+            alt={product.name}
+            height={600}
+            width={600}
+            className="object-cover w-full h-64"
+          />
+        </CardContent>
+        <CardHeader className="space-y-4 text-center">
+          <CardTitle className="line-clamp-1">{product.name}</CardTitle>
+          <CardTitle>৳ {product.price}</CardTitle>
+        </CardHeader>
+        <CardFooter className="!px-2">
+          <Button
+            onClick={(e: React.MouseEvent) => {
+              e.preventDefault();
+              addToCart(product);
+            }}
+            className="w-full relative z-10"
+          >
+            <ShoppingBag /> Buy Now
+          </Button>
+        </CardFooter>
+      </Card>
+    </Link>
   );
 }
