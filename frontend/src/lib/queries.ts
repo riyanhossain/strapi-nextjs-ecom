@@ -16,9 +16,7 @@ export const getPolicyPage = async () => {
       data: {
         content: string;
       };
-    }>(`privacy-policy`, {
-      cache: "force-cache",
-    })
+    }>(`privacy-policy`)
     .json();
 
   return data;
@@ -30,20 +28,14 @@ export const getTermsAndCondtionsPage = async () => {
       data: {
         content: string;
       };
-    }>(`privacy-policy`, {
-      cache: "force-cache",
-    })
+    }>(`privacy-policy`)
     .json();
 
   return data;
 };
 
 export const getCategories = async () => {
-  const res = await api
-    .get(`categories`, {
-      cache: "force-cache",
-    })
-    .json();
+  const res = await api.get(`categories`).json();
 
   return CategoriesSchema.safeParse(res);
 };
@@ -56,15 +48,12 @@ export const getProducts = async ({
   category?: string;
 }) => {
   const filterQuery = category
-    ? `&filters[category][name][$eqi]=${category.toLowerCase()}`
+    ? `&filters[categories][name][$eqi]=${category.toLowerCase()}`
     : "";
 
   const res = await api
     .get(
-      `products?populate=*&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}${filterQuery}`,
-      {
-        cache: "force-cache",
-      }
+      `products?populate=*&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}${filterQuery}`
     )
     .json();
 

@@ -8,10 +8,9 @@ export const CustomerSchema = z.object({
   phone: z.string(),
   address: z.string(),
   verified: z.boolean().default(false),
-  is_active: z.boolean().default(false),
   role: z.enum(["customer", "admin"]).default("customer"),
-  createdAt: z.string().datetime(),
-  updatedAt: z.string().datetime(),
+  createdAt: z.string().datetime().optional(),
+  updatedAt: z.string().datetime().optional(),
 });
 
 export const ImageSchema = z.object({
@@ -50,6 +49,19 @@ export const CategorySchema = z.object({
   description: z.string().optional(),
 });
 
+export const SizeSchema = z.object({
+  id: z.number(),
+  documentId: z.string(),
+  code: z.string(),
+});
+
+export const ColorSchema = z.object({
+  id: z.number(),
+  documentId: z.string(),
+  name: z.string(),
+  color_code: z.string(),
+});
+
 export const ProductSchema = z.object({
   id: z.number(),
   documentId: z.string(),
@@ -57,9 +69,10 @@ export const ProductSchema = z.object({
   description: z.string(),
   price: z.number(),
   discount: z.number(),
-  stock_quantity: z.number(),
-  category: CategorySchema,
+  categories: z.array(CategorySchema),
   images: z.array(ImageSchema),
+  sizes: z.array(SizeSchema).optional(),
+  colors: z.array(ColorSchema).optional(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
 });
@@ -90,6 +103,8 @@ export const OrderItemSchema = z.object({
   product: ProductSchema,
   quantity: z.number().default(0),
   sub_total: z.number().default(0),
+  size: SizeSchema.optional(),
+  color: ColorSchema.optional(),
   createdAt: z.string().datetime().optional(),
   updatedAt: z.string().datetime().optional(),
 });

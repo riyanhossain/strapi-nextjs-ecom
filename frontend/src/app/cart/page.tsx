@@ -17,11 +17,18 @@ import { X } from "lucide-react";
 import Link from "next/link";
 
 export default function Cart() {
+  const { cart } = useCartStore();
   return (
     <section className="border-x border-border/60 container mx-auto flex-1 flex">
       <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_640px] flex-1">
-        <MainCart />
-        <CartDetails />
+        {cart.length > 0 ? (
+          <>
+            <MainCart />
+            <CartDetails />
+          </>
+        ) : (
+          <div className="py-6 px-8">No items in the cart</div>
+        )}
       </div>
     </section>
   );

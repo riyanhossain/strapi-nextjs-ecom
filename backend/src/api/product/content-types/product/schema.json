@@ -28,9 +28,6 @@
       "type": "integer",
       "default": 0
     },
-    "stock_quantity": {
-      "type": "integer"
-    },
     "images": {
       "type": "media",
       "multiple": true,
@@ -40,10 +37,20 @@
         "videos"
       ]
     },
-    "category": {
+    "categories": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::category.category"
+    },
+    "sizes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::size.size"
+    },
+    "colors": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::color.color"
     }
   }
 }
