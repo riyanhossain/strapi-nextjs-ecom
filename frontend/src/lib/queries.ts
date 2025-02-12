@@ -66,10 +66,12 @@ export const getProducts = async ({
 };
 
 export const getSingleProduct = async (slug: string) => {
+  const url = `products/${slug}?populate=*`;
+
   const { data } = await api
     .get<{
       data: Product;
-    }>(`products/${slug}?populate=*`)
+    }>(url)
     .json();
 
   return ProductSchema.safeParse(data);

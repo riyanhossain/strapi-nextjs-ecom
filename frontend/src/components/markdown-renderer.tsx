@@ -54,7 +54,9 @@ export default function MarkdownRenderer({
           />
         ),
         table: (props: React.ComponentProps<"table">) => (
-          <table className="table-auto w-full" {...props} />
+          <div className="overflow-x-auto">
+            <table className="w-full table-auto text-center" {...props} />
+          </div>
         ),
         thead: (props: React.ComponentProps<"thead">) => (
           <thead className="bg-gray-100" {...props} />
